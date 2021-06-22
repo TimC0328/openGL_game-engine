@@ -18,10 +18,13 @@ int main()
                           Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.5, 1.0)),
                           Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0)), };
 
-    Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]));
+    unsigned int indicies[] = {0, 1, 2};
+
+    Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]), indicies, sizeof(indicies)/sizeof(indicies[0]));
+    Mesh mesh2("./res/monkey3.obj");
     Shader shader("./res/basicShader");
     Texture texture("./res/bricks.jpeg");
-    Camera camera(glm::vec3(0,0,-2), 70.0f, (float)WIDTH/(float)HEIGHT, 0.01f, 1000.0f);
+    Camera camera(glm::vec3(0,0,-3), 70.0f, (float)WIDTH/(float)HEIGHT, 0.01f, 1000.0f);
     Transform transform;
 
     float counter = 0.0f;
@@ -43,7 +46,7 @@ int main()
         shader.Bind();
         texture.Bind();
         shader.Update(transform, camera);
-        mesh.Draw();
+        mesh2.Draw();
 
         display.Update();
         counter += 0.01f;
