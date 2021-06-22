@@ -27,6 +27,10 @@ Texture::Texture(const std::string& fileName)
 
 Texture::~Texture()
 {
-   // glActiveTexture(GL_TEXTURE + unit, )
     glDeleteTextures(1, &m_texture);
+}
+
+void Texture::Bind()
+{
+	glBindTexture(GL_TEXTURE_2D, m_texture);
 }
